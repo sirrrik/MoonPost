@@ -9,13 +9,14 @@
 </div>
 <div class="col-9 p-5">
     {{-- info section --}}
+    
 <div class="d-flex justify-content-between align-items-baseline"><h1>{{$user->Username}}</h1>
   
    
   <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
 
   @can('update', $user->profile)
-  <a  class="btn btn-primary " href="/p/create">add new post</a>
+  <a  class="btn btn-primary " href="/p/create">new post</a>
  @endcan
 
  @can('update', $user->profile)
