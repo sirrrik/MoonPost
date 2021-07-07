@@ -48,7 +48,7 @@ class User extends Authenticatable
 
         static::created(function ($user) {
             $user->profile()->create([
-                'title' => $user->username,
+                'title' => $user->Utsername,
             ]);
 
             Mail::to($user->email)->send(new NewUserWelcomeMail());
