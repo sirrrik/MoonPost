@@ -21,7 +21,7 @@ Route::get('/email', function () {
     return new NewUserWelcomeMail();
 });
 
-Route::post('follow/{user}','FollowersController@store');
+Route::post('follow/{user}','App\Http\Controllers\FollowersController@store');
 
 Route::get('/', 'App\Http\Controllers\PostsController@index');
 
