@@ -6,7 +6,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewUserWelcomeMail;
+use Illuminate\Contracts\Mail\Mailable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -48,7 +50,7 @@ class User extends Authenticatable
 
         static::created(function ($user) {
             $user->profile()->create([
-                'title' => $user->Utsername,
+                'title' => $user->Username,
             ]);
 
             Mail::to($user->email)->send(new NewUserWelcomeMail());

@@ -15,4 +15,5 @@ class FollowersController extends Controller
     {
         return auth()->user()->following()->toggle($user->profile);
     }
+    
 }

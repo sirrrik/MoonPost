@@ -1,7 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 use App\Http\Controllers\PostsController;
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +23,11 @@ Auth::routes();
 Route::get('/email', function () {
     return new NewUserWelcomeMail();
 });
+Route::get('/Admin/index','App\Http\Controllers\AdminController@index')->name('Admin.index');
+
+ Route::post('/Admin/delete/{id}','App\Http\Controllers\AdminController@delete')->name('delete');
+
+// Route::post('delete/{id}',[AdminController::class, 'delete'])->name('delete');
 
 Route::post('follow/{user}','App\Http\Controllers\FollowersController@store');
 
@@ -37,3 +45,22 @@ Route::get('/profile/{user}', 'App\Http\Controllers\ProfilesController@index')->
 Route::get('/profile/{user}/edit','App\Http\Controllers\ProfilesController@edit')->name('profile.edit');
 
 Route::patch('/profile/{user}','App\Http\Controllers\ProfilesController@update')->name('profile.update');
+
+
+
+Route::get ( '/welcome', function () {
+	return view ( 'welcome' );
+} );
+
+Route::post ( '/search', function () {
+	$q = Request::Input ( 'q' );
+	if($q != ""){
+		$user = User::where ( 'name', 'LIKE', '%' . $q . '%' )->orWhere ( 'email', 'LIKE', '%' . $q . '%' )->get ();
+		if (count ( $user ) > 0)
+			return view ( '/welcome' )->withDetails ( $user )->withQuery ( $q );
+		else
+			return view ( '/welcome' )->withMessage ( 'No Details found. Try to search again !' );
+	}
+	return view ( 'search-functionality-in-laravel/welcome' )->withMessage ( 'No Details found. Try to search again !' );
+} );
+

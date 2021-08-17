@@ -15,6 +15,12 @@
    
   <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
 
+  {{-- search for user --}}
+  @can('update', $user->profile)
+  <a class="btn btn-primary " href="/welcome">search</a>
+  @endcan
+
+
   @can('update', $user->profile)
   <a  class="btn btn-primary " href="/p/create">new post</a>
  @endcan

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 
 class ProfilesController extends Controller
@@ -35,8 +36,11 @@ class ProfilesController extends Controller
                 return $user->following->count();
             });
 
-        return view('profiles.index', compact('user', 'follows', 'postCount', 'followersCount', 'followingCount'));
+           
+        return view('profiles.index', compact('user', 'follows', 'postCount', 'followersCount', 'followingCount',));
     }
+
+
 
     
     public function edit(\App\Models\User $user)

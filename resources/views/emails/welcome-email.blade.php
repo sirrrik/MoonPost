@@ -1,12 +1,12 @@
 @component('mail::message')
-# Introduction
+# Moonpost
 
-The body of your message.
+Welcome to the Moonpost family.
 
 @component('mail::button', ['url' => ''])
 Button Text
 @endcomponent
 
-Thanks,<br>
+All the best ,<br>
 {{ config('app.name') }}
 @endcomponent

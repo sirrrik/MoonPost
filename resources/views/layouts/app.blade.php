@@ -73,6 +73,11 @@
                             </li>
                         @endguest
                     </ul>
+                    <a class="navbar-brand d-flex" href="{{ url('/Admin/index')  }}">
+                        <div><img class="pr-3" style="height:20px; border-right: 1px solid " src="/svg/MoonPost.svg" alt=""></div>
+                   
+                    </a>
+                    
                 </div>
             </div>
         </nav>
